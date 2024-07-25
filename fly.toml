@@ -1,0 +1,28 @@
+# fly.toml app configuration file generated for sync-with-salesforce on 2024-07-24T20:09:56+05:30
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'sync-with-salesforce'
+primary_region = 'dfw'
+
+[env]
+PORT = "8081"
+HOST = "https://sync-with-salesforce.fly.dev"
+SHOPIFY_API_KEY = "c106adea871e3aa41d89f330e269bb16"
+SCOPES = "read_assigned_fulfillment_orders,read_content,read_customers,read_metaobject_definitions,read_metaobjects,read_orders,read_products,write_assigned_fulfillment_orders,write_content,write_customers,write_metaobject_definitions,write_metaobjects,write_orders,write_products"
+
+[build]
+
+[http_service]
+  internal_port = 8081
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
